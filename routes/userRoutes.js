@@ -57,12 +57,14 @@ router.get("/", (req, res) => {
 });
 
 router.post("/login", (req, res) => {
+  console.log('hello')
   try {
     let sql = "SELECT * FROM users WHERE ?";
     let user = {
       email: req.body.email,
     };
     con.query(sql, user, async (err, result) => {
+      console.log(result)
       if (err) throw err;
       if (result.length === 0) {
         res.send("Email not found please register");
@@ -71,6 +73,7 @@ router.post("/login", (req, res) => {
           req.body.password,
           result[0].password
         );
+        console.log(isMatch)
         if (!isMatch) {
           res.send("Password incorrect");
         } else {

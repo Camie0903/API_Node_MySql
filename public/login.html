@@ -5,31 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <form onsubmit="UserLogin(event)">
-      <input type="email" placeholder="email" id="email" />
-      <input type="password" placeholder="password" id="password" />
-      <button type="submit">Submit</button>
+    <div id="navbar">
+        <h2><a href="./index.html"><button class="navbtn">Admin</button></a></h2>
+        <h2><a href="./products.html"><button class="navbtn">Users</button></a></h2>
+        <h2><a href="./login.html"><button class="navbtn">Login</button></a></h2>
+        <h2><a href="./register.html"><button class="navbtn">Register</button></a></h2>
+      </div>
+<form id="form" method="post" >
+    <div class="box">
+    <h1>Hey !</h1>
+    <input id="email"
+    type="email" name="email"  class="email"  placeholder="Email" required/>
+    <input id="password" type="text" name="email" , class="email" placeholder="Password" required />
+    <button class="navbtn" type="submit" >Sumbit </button>
+    </div>
     </form>
+    <h2><a href="./register.html"><button class="navbtn">Sign Up</button></a></h2>
+    <p>Forgot your password? <a href="./forgetpassword.html">Click Here</a><u ></u></a></p>
 </body>
-    <script>
-      let email = document.querySelector("#email").value;
-      async function UserLogin(e) {
-        e.preventDefault();
-        const response = await fetch("http://localhost:6969/users/login", {
-          method: "POST",
-          body: JSON.stringify({
-            email: document.querySelector("#email").value,
-            password: document.querySelector("#password").value,
-          }),
-          headers: {
-            "Content-type": "application/json",
-          },
-        });
-        const data = await response.json();
-        console.log(data);
-        return data;
-      }
-    </script>
 </html>
+<script>
+    const form = document.getElementById("form");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const userEmail = document.getElementById("email").value;
+      const psw = document.getElementById("password").value;
+      fetch("http://localhost:6969/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: userEmail,
+          password: psw,
+        }),
+      })
+        // .then((response) => response.json())
+        // .then((data) => {
+        //   console.log(data)
+        // });
+        .then((res) => console.log(res.json()))
+    });
+  </script>
+
+
+
+
