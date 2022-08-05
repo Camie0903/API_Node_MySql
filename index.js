@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 
 
 app.use("/users", userRoute);
-app.use("/products", productRoute);
+app.use("/product", productRoute);
 app.use("/categories", categoriesRoute);
 app.use("/orders", ordersRoutes);
 app.use("/order_details", order_detailsRoutes);

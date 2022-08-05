@@ -186,7 +186,7 @@ router.delete("/:id", (req, res) => {
       con.query(
         `delete from users where users_id = ${req.params.id}`,
         (err, result) => {
-          if (err) throw err;
+          if (err) throw err; 
           res.send(result);
         }
       );
